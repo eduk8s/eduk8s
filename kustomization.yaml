@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# All this configuration file does is pull in the configuration from the
+# separate eduk8s-operator repository, override the tag for the version
+# of the eduk8s-operator container image used, as well as the image pull
+# policy.
+#
+# When updating this file to bind to a specific version of the eduk8s
+# operator for a new release you need to update the version tag in two
+# places.
+#
+# The first is the "ref" parameter in the location provided as base. The
+# second is for the "newTag" parameter when overriding the tag for the
+# version of the eduk8s operator container image to use. This overrides
+# the default behaviour of the kustomize file in the eduk8s-operator
+# repository which will otherwise use the master tag for the container
+# image. The version specified in each place should be the same in case
+# the resources needed to deploy the specific version of the container
+# image is changed.
+
+bases:
+- github.com/eduk8s/eduk8s-operator?ref=master
+
+images:
+- name: quay.io/eduk8s/eduk8s-operator
+  newTag: master
+
+patchesStrategicMerge:
+- image-pull-policy.yaml
