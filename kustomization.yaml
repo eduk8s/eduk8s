@@ -20,11 +20,11 @@ kind: Kustomization
 # image is changed.
 
 bases:
-- github.com/eduk8s/eduk8s-operator?ref=200512.89bf9cd
+- github.com/eduk8s/eduk8s-operator?ref=200519.077e946
 
 images:
 - name: quay.io/eduk8s/eduk8s-operator
-  newTag: 200512.89bf9cd
+  newTag: 200519.077e946
 
 patchesStrategicMerge:
 - image-pull-policy.yaml
