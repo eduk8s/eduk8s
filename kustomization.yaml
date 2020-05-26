@@ -1,30 +1,45 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# All this configuration file does is pull in the configuration from the
-# separate eduk8s-operator repository, override the tag for the version
-# of the eduk8s-operator container image used, as well as the image pull
+# The "resources" directory is currently a copy of the corresponding
+# directory from the "eduk8s-operator" repository for the referenced
+# version of the operator.
+#
+# This configuration then overrides the tag for the version of the
+# "eduk8s-operator" container image used, as well as the image pull
 # policy.
 #
 # When updating this file to bind to a specific version of the eduk8s
-# operator for a new release you need to update the version tag in two
-# places.
+# operator for a new release you need to refresh the copy of the
+# "resources" directory, and then update the version tag corresponding to
+# the container image to use, by setting the "newTag" property.
 #
-# The first is the "ref" parameter in the location provided as base. The
-# second is for the "newTag" parameter when overriding the tag for the
-# version of the eduk8s operator container image to use. This overrides
-# the default behaviour of the kustomize file in the eduk8s-operator
-# repository which will otherwise use the master tag for the container
-# image. The version specified in each place should be the same in case
-# the resources needed to deploy the specific version of the container
-# image is changed.
+# This overrides the default behaviour of the deployment resources which
+# will otherwise use the "develop" tag for the container image.
 
-bases:
-- github.com/eduk8s/eduk8s-operator?ref=200521.73a1b10
+namespace: eduk8s
+
+resources:
+- resources/crds-v1beta1/workshop.yaml
+- resources/crds-v1beta1/workshop-environment.yaml
+- resources/crds-v1beta1/workshop-session.yaml
+- resources/crds-v1beta1/workshop-request.yaml
+- resources/crds-v1beta1/training-portal.yaml
+- resources/crds-v1beta1/system-profile.yaml
+#- resources/crds-v1/workshop.yaml
+#- resources/crds-v1/workshop-environment.yaml
+#- resources/crds-v1/workshop-session.yaml
+#- resources/crds-v1/workshop-request.yaml
+#- resources/crds-v1/training-portal.yaml
+#- resources/crds-v1/system-profile.yaml
+- resources/operator/namespace.yaml
+- resources/operator/serviceaccount.yaml
+- resources/operator/rolebinding.yaml
+- resources/operator/deployment.yaml
 
 images:
 - name: quay.io/eduk8s/eduk8s-operator
-  newTag: 200521.73a1b10
+  newTag: 200526.5ba6289
 
 patchesStrategicMerge:
 - image-pull-policy.yaml
