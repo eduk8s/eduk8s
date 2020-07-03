@@ -33,6 +33,12 @@ spec:
                   properties:
                     image:
                       type: string
+                    title:
+                      type: string
+                    logo:
+                      type: string
+                    password:
+                      type: string
                     capacity:
                       type: integer
                     initial:
@@ -58,8 +64,6 @@ spec:
                           type: string
                     registration:
                         type: object
-                        required:
-                        - enabled
                         properties:
                           type:
                             type: string
