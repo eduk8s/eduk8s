@@ -39,6 +39,8 @@ spec:
                       type: string
                     password:
                       type: string
+                    index:
+                      type: string
                     capacity:
                       type: integer
                     initial:
@@ -51,6 +53,16 @@ spec:
                     orphaned:
                       type: string
                       pattern: '^\d+(s|m|h)$'
+                    theme:
+                      type: object
+                      properties:
+                        frame:
+                          type: object
+                          properties:
+                            ancestors:
+                              type: array
+                              items:
+                                type: string
                     ingress:
                       type: object
                       properties:
