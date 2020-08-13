@@ -37,6 +37,8 @@ spec:
                   properties:
                     class:
                       type: string
+                    user:
+                      type: integer
                     group:
                       type: integer
                 dockerd:
@@ -108,6 +110,19 @@ spec:
                       type: object
                       properties:
                         trackingId:
+                          type: string
+                theme:
+                  type: object
+                  properties:
+                    dashboard:
+                      type: object
+                      properties:
+                        style:
+                          type: string
+                    workshop:
+                      type: object
+                      properties:
+                        style:
                           type: string
             status:
               type: object
