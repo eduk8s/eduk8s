@@ -39,7 +39,11 @@ spec:
                   type: string
             request:
               type: object
+              required:
+              - enabled
               properties:
+                enabled:
+                  type: boolean
                 token:
                   type: string
                 namespaces:
@@ -58,6 +62,8 @@ spec:
                   type: object
                   properties:
                     domain:
+                      type: string
+                    protocol:
                       type: string
                     secret:
                       type: string
