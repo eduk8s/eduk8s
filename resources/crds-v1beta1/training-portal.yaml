@@ -172,10 +172,14 @@ spec:
             eduk8s:
               type: object
               required:
+              - namespace
               - url
               - credentials
-              - environments
+              - clients
+              - secrets
               properties:
+                namespace:
+                  type: string
                 url:
                   type: string
                 credentials:
@@ -219,44 +223,17 @@ spec:
                           type: string
                         secret:
                           type: string
-                workshops:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - name
-                    - vendor
-                    - title
-                    - description
-                    - url
-                    properties:
-                      name:
+                secrets:
+                  type: object
+                  properties:
+                    ingress:
+                      type: array
+                      items:
                         type: string
-                      vendor:
+                    registry:
+                      type: array
+                      items:
                         type: string
-                      title:
-                        type: string
-                      description:
-                        type: string
-                      url:
-                        type: string
-                environments:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - name
-                    - workshop
-                    properties:
-                      name:
-                        type: string
-                      workshop:
-                        type: object
-                        required:
-                        - name
-                        properties:
-                          name:
-                            type: string
   additionalPrinterColumns:
   - name: URL
     type: string

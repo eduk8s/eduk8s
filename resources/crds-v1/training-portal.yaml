@@ -175,12 +175,14 @@ spec:
                 eduk8s:
                   type: object
                   required:
+                  - namespace
                   - url
                   - credentials
                   - clients
-                  - workshops
-                  - environments
+                  - secrets
                   properties:
+                    namespace:
+                      type: string
                     url:
                       type: string
                     credentials:
@@ -224,75 +226,17 @@ spec:
                               type: string
                             secret:
                               type: string
-                    workshops:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - name
-                        - title
-                        - description
-                        properties:
-                          name:
+                    secrets:
+                      type: object
+                      properties:
+                        ingress:
+                          type: array
+                          items:
                             type: string
-                          title:
+                        registry:
+                          type: array
+                          items:
                             type: string
-                          description:
-                            type: string
-                          vendor:
-                            type: string
-                          authors:
-                            type: array
-                            items:
-                              type: string
-                          difficulty:
-                            type: string
-                          duration:
-                            type: string
-                          tags:
-                            type: array
-                            items:
-                              type: string
-                          logo:
-                            type: string
-                          url:
-                            type: string
-                          content:
-                            type: object
-                            properties:
-                              image:
-                                type: string
-                              files:
-                                type: string
-                    environments:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                        - name
-                        - workshop
-                        properties:
-                          name:
-                            type: string
-                          workshop:
-                            type: object
-                            required:
-                            - name
-                            properties:
-                              name:
-                                type: string
-                          capacity:
-                            type: integer
-                          initial:
-                            type: integer
-                          reserved:
-                            type: integer
-                          expires:
-                            type: string
-                            pattern: '^\d+(s|m|h)$'
-                          orphaned:
-                            type: string
-                            pattern: '^\d+(s|m|h)$'
       additionalPrinterColumns:
       - name: URL
         type: string
