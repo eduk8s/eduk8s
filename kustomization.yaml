@@ -33,7 +33,7 @@ resources:
 
 images:
 - name: quay.io/eduk8s/eduk8s-operator
-  newTag: 210329.105914.ecba003
+  newTag: 210329.115037.4ca9b97
 
 patchesStrategicMerge:
 - image-pull-policy.yaml
