@@ -17,23 +17,12 @@ kind: Kustomization
 # This overrides the default behaviour of the deployment resources which
 # will otherwise use the "develop" tag for the container image.
 
-namespace: eduk8s
-
-resources:
-- resources/crds-v1/workshop.yaml
-- resources/crds-v1/workshop-environment.yaml
-- resources/crds-v1/workshop-session.yaml
-- resources/crds-v1/workshop-request.yaml
-- resources/crds-v1/training-portal.yaml
-- resources/crds-v1/system-profile.yaml
-- resources/operator/namespace.yaml
-- resources/operator/serviceaccount.yaml
-- resources/operator/rolebinding.yaml
-- resources/operator/deployment.yaml
+bases:
+- ./resources
 
 images:
 - name: quay.io/eduk8s/eduk8s-operator
-  newTag: 210414.123309.f981724
+  newTag: 210422.095122.6894856
 
 patchesStrategicMerge:
 - image-pull-policy.yaml
