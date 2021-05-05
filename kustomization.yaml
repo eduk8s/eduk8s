@@ -22,7 +22,7 @@ bases:
 
 images:
 - name: quay.io/eduk8s/eduk8s-operator
-  newTag: 210504.014155.47e891f
+  newTag: 210505.052045.f4b8c0b
 
 patchesStrategicMerge:
 - image-pull-policy.yaml
